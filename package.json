@@ -1,0 +1,28 @@
+{
+  "name": "p5-slither.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chesshacker/p5-slither.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chesshacker/p5-slither.io/issues"
+  },
+  "homepage": "https://github.com/chesshacker/p5-slither.io#readme",
+  "dependencies": {
+    "css-loader": "^0.28.7",
+    "p5": "^0.5.16",
+    "reset-css": "^2.2.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.2"
+  }
+}

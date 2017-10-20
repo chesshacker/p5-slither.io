@@ -1,9 +1,9 @@
 version: '3'
 services:
-  server:
-    build: .
+  client:
+    build: client
     volumes:
-      - .:/app
+      - ./client:/app
       - /app/node_modules
     ports:
       - "8080:8080"

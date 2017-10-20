@@ -2,3 +2,7 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+#defaultCanvas0 {
+  display: none;
+}

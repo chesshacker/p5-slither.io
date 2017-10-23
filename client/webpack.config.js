@@ -25,6 +25,12 @@ module.exports = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 8080
+    port: 8080,
+    proxy: {
+      '/ws': {
+        target: 'ws://server:3000/ws',
+        secure: false
+      }
+    }
   }
 };

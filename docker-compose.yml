@@ -7,3 +7,11 @@ services:
       - /app/node_modules
     ports:
       - "8080:8080"
+  server:
+    build: server
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: npm run develop

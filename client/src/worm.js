@@ -64,15 +64,15 @@ function updateWorm({ desiredHeading, goFast }) {
   }
   if (worm.parts.length > worm.length) {
     const last = worm.parts.shift();
-    if (isFast) {
-      if (lastDrop <= 0) {
-        food.push(last);
-        worm.length -= 2.0;
-        lastDrop = DROP_RATE;
-      } else {
-        lastDrop--;
-      }
-    }
+    // if (isFast) {
+    //   if (lastDrop <= 0) {
+    //     food.push(last);
+    //     worm.length -= 2.0;
+    //     lastDrop = DROP_RATE;
+    //   } else {
+    //     lastDrop--;
+    //   }
+    // }
   }
   worm.size = sizeFromLength(worm.length);
   return worm;

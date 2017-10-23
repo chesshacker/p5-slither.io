@@ -1,6 +1,7 @@
 const { getMouseInput } = require('./input');
 const { drawWorm, updateWorm, growWorm, getWormPosition } = require('./worm');
-const { drawFood, updateFood, initializeFood } = require('./food');
+const { drawFood, updateFood } = require('./food');
+const { startGame } = require('./server');
 
 draw = p => () => {
   p.clear();
@@ -24,7 +25,8 @@ draw = p => () => {
 setup = p => () => {
   p.frameRate(60);
   p.createCanvas(p.windowWidth, p.windowHeight);
-  initializeFood();
+
+  startGame();
 }
 
 windowResized = p => () => {

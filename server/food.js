@@ -1,25 +1,34 @@
-var food = [];
+const { randomPosition } = require('./util');
+const { addFoodUpdate } = require('shared');
 
-for (var x=0; x < 500; x++) {
-  food.push({
-    x: Math.floor(Math.random() * 1000 - 500),
-    y: Math.floor(Math.random() * 1000 - 500)
-  });
-}
+const randomFood = () => randomPosition();
 
-function getFood() {
-  return food;
-}
-
-function eatFood(dot) {
+// returns amount of food eaten
+const updateFood = (worm) => {
+  var foodEaten = 0.0;
   food.forEach((dot, i) => {
-    if (dot.x !== dot.x || dot.y !== dot.y) {
-      food.splice(i, 1);
+    const collisionDistance = Math.pow(worm.size/2, 2) + Math.pow(FOOD_SIZE, 2);
+    const dx = dot.x - worm.x;
+    const dy = dot.y - worm.y;
+    if (dx*dx + dy*dy < 4 * collisionDistance) {
+      eatFood(dot);
+      foodEaten += 1.0;
+      food.splice(i,1);
     }
   });
+  return foodEaten;
 }
 
+const generateFoodUpdates = () => {
+  if (Math.random() < 0.01) {
+    return [
+      addFoodUpdate(randomFood())
+    ];
+  } else {
+    return [];
+  }
+};
+
 module.exports = {
-  getFood,
-  eatFood
+  generateFoodUpdates
 };

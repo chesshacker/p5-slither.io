@@ -13,8 +13,16 @@ function limitRange(number, limit) {
   }
   return number;
 }
+BOARD_SIZE = 300
+function randomPosition() {
+  return {
+    x: Math.floor(Math.random() * BOARD_SIZE - BOARD_SIZE/2),
+    y: Math.floor(Math.random() * BOARD_SIZE - BOARD_SIZE/2)
+  };
+}
 
 module.exports = {
   differenceBetweenAngles,
-  limitRange
+  limitRange,
+  randomPosition
 }

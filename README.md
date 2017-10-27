@@ -9,8 +9,7 @@ JavaScript library to make drawing fun and easy.
 ## How to run or develop
 
 Development requires either a recent version of Docker or Node. To start
-development with Docker, run `docker-compose up`. Optionally, you could use
-Node directly by running `npm install` and `npm start`.
+development with Docker, run `docker-compose up`.
 
 Once running, you should connect with your favorite web browser. I haven't done
 a lot of browser compatibility testing... but a recent version of Chrome appears

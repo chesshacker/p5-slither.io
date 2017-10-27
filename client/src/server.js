@@ -1,43 +1,38 @@
-const { initializeFood, removeFood } = require('./food');
+const { updateGameState } = require('shared');
 
 var ws;
+var isReady = false;
 
-const startGame = () => {
-  ws = new WebSocket('ws://localhost:3000/ws');
-  Object.assign(ws, { onopen, onmessage, onclose })
-}
-
-const eatFood = (server) => (dot) => {
-  const messageType = 'eatFood';
-  const payload = dot;
-  server.send(JSON.stringify({ messageType, payload }));
-}
-
-const onopen = (event) => {
-  console.log('ws.open');
-};
-
-const onmessage = (event) => {
-  const { messageType, payload } = JSON.parse(event.data);
-  switch (messageType) {
-    case 'startGame':
-      initializeFood(payload, eatFood(ws));
-      break;
-    case 'removeFood':
-      console.log('remove food');
-      removeFood(payload);
-      break;
-    default:
-      console.error(`unknown message - ${messageType}`);
+const sendInput = (input) => {
+  if (isReady) {
+    ws.send(JSON.stringify(input));
   }
 };
 
+const onopen = (event) => {
+  isReady = true;
+};
+
+const onmessage = (event) => {
+  const updates = JSON.parse(event.data);
+  updates.forEach((update) => {
+    updateGameState(update);
+  });
+};
+
 const onclose = (event) => {
-  console.log('ws.close', event.code, event.reason);
   ws = null;
+};
+
+const startGame = () => {
+  // TODO: proxy websocket in dev
+  // const wsUrl = `ws://${window.location.host}/ws`;
+  const wsUrl = `ws://${window.location.hostname}:3000/ws`;
+  ws = new WebSocket(wsUrl);
+  Object.assign(ws, { onopen, onmessage, onclose });
 };
 
 module.exports = {
   startGame,
-  eatFood
-}
+  sendInput
+};

@@ -1,17 +1,28 @@
 version: '3'
 services:
   client:
-    build: client
+    build:
+      context: .
+      args:
+        - CLIENT_OR_SERVER=client
     volumes:
       - ./client:/app
+      - ./shared:/shared
       - /app/node_modules
+      - /shared/node_modules
     ports:
       - "8080:8080"
+    command: npm run develop
   server:
-    build: server
+    build:
+      context: .
+      args:
+        - CLIENT_OR_SERVER=server
     volumes:
       - ./server:/app
+      - ./shared:/shared
       - /app/node_modules
+      - /shared/node_modules
     ports:
       - "3000:3000"
     command: npm run develop
